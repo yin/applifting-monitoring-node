@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    expose:
+      - 3000
+    ports:
+      - 3000:3000
+    environment:
+      HTTP_PORT: 3000
+      MONGO_HOST: mongodb://mongo/odmp
+    restart: always
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:3.6
+    command: --wiredTigerCacheSizeGB 0.25
+    volumes:
+      - "mongo-data:/data/db"
+
+volumes:
+  mongo-data:
