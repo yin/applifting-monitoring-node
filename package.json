@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "watch": "./node_modules/nodemon/nbin/nodemon",
+    "watch": "./node_modules/nodemon/bin/nodemon.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "mongoose": "^5.7.5"
+    "mongoose": "^5.7.5",
+    "nodemon": "^1.19.3"
   }
 }
