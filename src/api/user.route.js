@@ -1,10 +1,6 @@
 const router = require('express').Router();
 const User = require('../models/user.model');
 
-router.get('/:id/action/:action', function (req, res) {
-    res.end(":P");
-});
-
 // REST List
 router.get('/', function (req, res) {
     User.find()
