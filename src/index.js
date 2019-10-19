@@ -5,7 +5,7 @@ const app = express();
 
 const port = config.http.port;
 
-require('./config/mongoose_connection');
+require('./config/mongoose-connection');
 
 app.get('*', (req, res) => {
     res.end('Hello');
