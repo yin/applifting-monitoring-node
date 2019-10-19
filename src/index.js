@@ -21,6 +21,7 @@ app.use(function(req, res, next) {
 
 app.use('/user', require('./api/user.route'));
 app.use('/monitored-endpoint', require('./api/monitored-endpoint.route'));
+app.use('/monitoring-result', require('./api/monitoring-result.route'));
 
 app.get('*', (req, res) => {
     res.status(400).end('No content');
