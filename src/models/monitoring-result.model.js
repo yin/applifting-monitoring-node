@@ -7,7 +7,8 @@ const MonitoringResult = new mongoose.Schema({
         index: true,
     },
     httpStatus: {
-        type: Integer,
+        type: Number,
+        validate: Number.isInteger,
         required: true,
     },
     payload: {
@@ -20,4 +21,4 @@ const MonitoringResult = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.Model('MonitoringResults', MonitoringResult);
+module.exports = mongoose.model('MonitoringResults', MonitoringResult);
