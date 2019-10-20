@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const MonitoredEndpoint = require('./user.model');
 
 const MonitoringResult = new mongoose.Schema({
     checked: {
@@ -15,9 +14,10 @@ const MonitoringResult = new mongoose.Schema({
         type: String,
     },
     monitoredEndpointId: {
-        type: MonitoredEndpoint,
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'MonitoredEndpoints',
         required: true,
     }
 });
 
-module.exports = mongoose.Model('MonitoredEndpoints', MonitoredEndpoint);
+module.exports = mongoose.Model('MonitoringResults', MonitoringResult);
