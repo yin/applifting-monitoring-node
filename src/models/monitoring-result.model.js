@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const MonitoredEndpoint = require('./user.model');
 
 const MonitoringResult = new mongoose.Schema({
     checked: {
@@ -8,16 +7,18 @@ const MonitoringResult = new mongoose.Schema({
         index: true,
     },
     httpStatus: {
-        type: Integer,
+        type: Number,
+        validate: Number.isInteger,
         required: true,
     },
     payload: {
         type: String,
     },
     monitoredEndpointId: {
-        type: MonitoredEndpoint,
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'MonitoredEndpoints',
         required: true,
     }
 });
 
-module.exports = mongoose.Model('MonitoredEndpoints', MonitoredEndpoint);
+module.exports = mongoose.model('MonitoringResults', MonitoringResult);
