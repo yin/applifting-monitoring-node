@@ -28,4 +28,4 @@ const MonitoredEndpoint = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.Model('MonitoredEndpoints', MonitoredEndpoint);
+module.exports = mongoose.model('MonitoredEndpoints', MonitoredEndpoint);
