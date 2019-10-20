@@ -69,4 +69,4 @@ function createEndpointForModel(model) {
     return router;
 }
 
-modules.exports = createEndpointForModel;
+module.exports = createEndpointForModel;
