@@ -22,7 +22,10 @@ const MonitoredEndpoint = new mongoose.Schema({
     monitoringInterval: {
         type: Number
     },
-    owner: User
+    owner: {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'Users'
+    }
 });
 
 module.exports = mongoose.Model('MonitoredEndpoints', MonitoredEndpoint);
