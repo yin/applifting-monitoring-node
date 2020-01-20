@@ -1,10 +1,10 @@
 const router = require('express').Router();
 
-function createEndpointForModel(model) {
+function createRestEndpoint(crudService) {
 
     // REST List
     router.get('/', function (req, res) {
-        model.find()
+        crudService.list()
             .then(collection => {
                 res.status(200).json(collection);
             })
@@ -16,7 +16,8 @@ function createEndpointForModel(model) {
 
     // REST Read
     router.get('/:id', function (req, res) {
-        model.findById(req.params.id)
+        let id = req.params.id;
+        crudService.read(id)
             .then(document => {
                 res.status(200).json(document);
             })
@@ -28,10 +29,9 @@ function createEndpointForModel(model) {
 
     // REST Create
     router.post('/', function (req, res) {
-        const t = req.body;
-        delete t._id;
-        let document = new model(req.body);
-        document.save()
+        const payload = req.body;
+        delete payload._id;
+        crudService.create(payload)
             .then(newDocument => {
                 res.status(200).json(newDocument);
             })
@@ -44,7 +44,8 @@ function createEndpointForModel(model) {
     // REST Update
     router.put('/:id', function (req, res) {
         let id = req.params.id;
-        model.findByIdAndUpdate({_id: id}, req.body, {new: true})
+        let payload = req.body;
+        crudService.update(id, payload)
             .then(document => {
                 res.status(200).json(document);
             })
@@ -56,7 +57,8 @@ function createEndpointForModel(model) {
 
     // REST Delete
     router.delete('/:id', function (req, res) {
-        model.findByIdAndDelete({_id: req.params.id})
+        let id = req.params.id;
+        crudService.remove(id)
             .then(document => {
                 return res.status(200).json(document);
             })
@@ -69,4 +71,4 @@ function createEndpointForModel(model) {
     return router;
 }
 
-module.exports = createEndpointForModel;
+module.exports = createRestEndpoint;
